@@ -15,6 +15,7 @@
  *    Allan Stockdill-Mander
  *    Mike Robertson
  *    Matt Brittan
+ *	  Abdirizak Abdullahi
  */
 
 // Portions copyright © 2018 TIBCO Software Inc.
@@ -240,7 +241,7 @@ func (c *client) Connect() Token {
 	connectionUp, err := c.status.Connecting()
 	if err != nil {
 		if err == errAlreadyConnectedOrReconnecting && c.options.AutoReconnect {
-			// When reconnection is active we don't consider calls tro Connect to ba an error (mainly for compatability)
+			// When reconnection is active we don't consider calls to Connect to be an error (mainly for compatability)
 			c.logger.Info("Connect() called but not disconnected", slog.String("component", string(CLI)))
 
 			t.returnCode = packets.Accepted
@@ -585,7 +586,7 @@ func (c *client) internalConnLost(whyConnLost error) {
 		return
 	}
 
-	// It may take a while for the disconnection to complete whatever called us needs to exit cleanly so finnish in goRoutine
+	// It may take a while for the disconnection to complete whatever called us needs to exit cleanly so finish in goRoutine
 	go func() {
 		c.logger.Debug("internalConnLost waiting on workers", slog.String("component", string(CLI)))
 		<-stopDone
