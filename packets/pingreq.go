@@ -46,7 +46,7 @@ func (pr *PingreqPacket) Unpack(b io.Reader) error {
 	return nil
 }
 
-// Details returns a Details struct containing the Qos and
+// Details returns a Details struct containing the Qos(quality of service) and 
 // MessageID of this ControlPacket
 func (pr *PingreqPacket) Details() Details {
 	return Details{Qos: 0, MessageID: 0}
